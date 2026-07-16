@@ -92,3 +92,17 @@ def fibonacci(n):
 terms = 10
 fib_sequence = [fibonacci(i) for i in range(terms)]
 print(f"First {terms} Fibonacci numbers: {fib_sequence}")
+
+from functools import lru_cache
+
+# Using a cache optimizes the time complexity to O(n)
+@lru_cache(maxsize=None)
+def fibonacci_fast(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibonacci_fast(n - 1) + fibonacci_fast(n - 2)
+
+# This will run instantly, whereas the un-cached version would hang indefinitely!
+print(fibonacci_fast(50))
