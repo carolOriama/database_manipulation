@@ -73,3 +73,22 @@ if __name__ == "__main__":
     print("\n Fetching Task ID #3 ")
     task_three = get_task_by_id(3)
     print(task_three)
+
+def fibonacci(n):
+    """
+    Returns the N-th Fibonacci number using recursion.
+    n must be a non-negative integer.
+    """
+    # Base cases: F(0) = 0, F(1) = 1
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    # Recursive step: F(n) = F(n-1) + F(n-2)
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Example usage: Generate the first 10 numbers in the sequence
+terms = 10
+fib_sequence = [fibonacci(i) for i in range(terms)]
+print(f"First {terms} Fibonacci numbers: {fib_sequence}")
