@@ -130,3 +130,33 @@ class Vehicle:
 gas_car = Vehicle("Ford", "Mustang", 2024, 45000.0)
 print(f"Created: {gas_car}")
 print(gas_car.drive(50))
+
+class Vehicle:
+    """Represents a general vehicle with encapsulated data."""
+    
+    transport_type = "Land"
+
+    def __init__(self, brand: str, model: str, year: int, price: float):
+        self.brand = brand
+        self.model = model
+        self.year = year
+        self._price = price      # Protected attribute
+        self.__odometer = 0      # Private attribute (Name mangled)
+
+    def drive(self, miles: int) -> str:
+        self.__odometer += miles
+        return f"The {self.model} drove {miles} miles. Total: {self.__odometer}."
+
+    @property
+    def price(self) -> float:
+        return self._price
+
+    @price.setter
+    def price(self, new_price: float):
+        if new_price > 0:
+            self._price = new_price
+        else:
+            print("Error: Price must be a positive number.")
+
+    def __str__(self) -> str:
+        return f"{self.year} {self.brand} {self.model}"
