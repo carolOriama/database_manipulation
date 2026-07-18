@@ -106,3 +106,27 @@ def fibonacci_fast(n):
 
 # This will run instantly, whereas the un-cached version would hang indefinitely!
 print(fibonacci_fast(50))
+
+class Vehicle:
+    """Represents a general vehicle."""
+    
+    transport_type = "Land"
+
+    def __init__(self, brand: str, model: str, year: int, price: float):
+        self.brand = brand
+        self.model = model
+        self.year = year
+        self.price = price
+        self.odometer = 0
+
+    def drive(self, miles: int) -> str:
+        self.odometer += miles
+        return f"The {self.model} drove {miles} miles. Total: {self.odometer}."
+
+    def __str__(self) -> str:
+        return f"{self.year} {self.brand} {self.model}"
+
+# Demonstration
+gas_car = Vehicle("Ford", "Mustang", 2024, 45000.0)
+print(f"Created: {gas_car}")
+print(gas_car.drive(50))
