@@ -160,3 +160,30 @@ class Vehicle:
 
     def __str__(self) -> str:
         return f"{self.year} {self.brand} {self.model}"
+    
+
+    # (Assuming Vehicle class from Commit 2 is above this)
+
+class ElectricCar(Vehicle):
+    """A specialized Vehicle powered by electricity."""
+
+    def __init__(self, brand: str, model: str, year: int, price: float, battery_kwh: int):
+        super().__init__(brand, model, year, price)
+        self.battery_kwh = battery_kwh
+
+    def drive(self, miles: int) -> str:
+        # Calls the parent drive method, then adds EV logic
+        base_message = super().drive(miles)
+        battery_used = miles * 0.3
+        return f"{base_message} Used {battery_used:.1f} kWh of battery power."
+
+def take_for_a_spin(vehicle_obj, distance: int):
+    """Polymorphic function: accepts any object with a .drive() method."""
+    print(f"Testing drive: {vehicle_obj.drive(distance)}")
+
+# Final Test
+gas_car = Vehicle("Ford", "Mustang", 2024, 45000.0)
+ev_car = ElectricCar("Tesla", "Model 3", 2026, 38000.0, 75)
+
+take_for_a_spin(gas_car, 50)
+take_for_a_spin(ev_car, 50)
